@@ -1,4 +1,4 @@
-package Yogurt.demo.Modelo;
+package Yogurt.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -17,13 +17,13 @@ public class Yogurt {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
 
     private String descripcion;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    @NotEmpty(message = "El precio no puede estar vacio")
+    @NotNull(message = "El precio no puede estar vacio")
     @Digits(integer = 10, fraction = 2 , message = "El precio debe tener menos de 10 digitos y maximo dos decimales")
     private BigDecimal precio;
 
@@ -33,7 +33,9 @@ public class Yogurt {
     @Column(nullable = false)
     private boolean activo = true;
 
-
+    @Column(nullable = false)
+    @Min(value = 0,message = "El stock no puede ser negativo")
+    @NotNull(message = "El stcok no puede ser vacio")
     private int stock;
 
     private LocalDateTime fechaCreacion;
