@@ -19,8 +19,10 @@ public class UserController {
     private final IUserService userService;
 
     @PostMapping ("save")
-    public void save(@RequestBody @Valid User user){
+    public ResponseEntity<?> save(@RequestBody @Valid User user){
         userService.saveUser(user);
+        return ResponseEntity.ok("Hola");
+
     }
     @PostMapping ("validate")
     public ResponseEntity<?> validateLogin(@RequestParam String nombre, @RequestParam String password ){

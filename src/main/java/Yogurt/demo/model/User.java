@@ -2,6 +2,7 @@ package Yogurt.demo.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,10 @@ import lombok.NoArgsConstructor;
 
    @NotBlank(message = "No puede estar vacio")
    @Column(nullable = false)
+   @Pattern(
+           regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).+$",
+           message = "Debe contener mayúscula, minúscula, número y carácter especial"
+   )
     private String password;
 
 
