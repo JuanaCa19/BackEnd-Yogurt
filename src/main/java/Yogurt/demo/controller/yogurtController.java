@@ -25,4 +25,9 @@ public class yogurtController {
         return yogurtService.findAllYogurts();
     }
 
+    @DeleteMapping("delete/{id}")
+    public void deleteYogurtById(@PathVariable Long id){
+         yogurtService.deleteYogurtById(id);
+    }
+
 }
