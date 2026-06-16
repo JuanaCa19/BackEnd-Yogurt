@@ -2,6 +2,7 @@ package Yogurt.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class Yogurt {
     @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
 
-    private String descripcion;
+    private String categoria;
 
     @Column(nullable = false, precision = 10, scale = 2)
     @NotNull(message = "El precio no puede estar vacio")
@@ -38,6 +39,7 @@ public class Yogurt {
     @NotNull(message = "El stcok no puede ser vacio")
     private int stock;
 
+    @CreationTimestamp
     private LocalDateTime fechaCreacion;
 
 

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/yogurt/")
+@CrossOrigin(origins = "*")
 public class yogurtController {
 
     private final IYogurtService yogurtService;
@@ -30,4 +31,12 @@ public class yogurtController {
          yogurtService.deleteYogurtById(id);
     }
 
+    @GetMapping("findById/{id}")
+    public Yogurt findYogurtById(@PathVariable Long id){
+        return yogurtService.findYogurtById(id);
+    }
+    @PutMapping
+    public void updateYogurt(@RequestBody @Valid Yogurt yogurt){
+        yogurtService.updateYogurt(yogurt);
+    }
 }

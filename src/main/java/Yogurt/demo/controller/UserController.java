@@ -14,21 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping ("/api/user/")
-
+@CrossOrigin(origins = "*")
 public class UserController {
     private final IUserService userService;
 
     @PostMapping ("save")
     public ResponseEntity<?> save(@RequestBody @Valid User user){
         userService.saveUser(user);
-        return ResponseEntity.ok("Hola");
+        return ResponseEntity.ok("Usuario Creado con exito");
 
     }
     @PostMapping ("validate")
-    public ResponseEntity<?> validateLogin(@RequestParam String nombre, @RequestParam String password ){
-        if(userService.passwordValidate(nombre,password)){
-            return ResponseEntity.status(HttpStatus.FOUND).body("Usuario Validado");
+    public ResponseEntity<?> validateLogin(@RequestParam String email, @RequestParam String password ){
+        String nombreUsuario = userService.passwordValidate(email,password);
+        if(nombreUsuario != null){
+            return ResponseEntity.ok(nombreUsuario);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no Validado");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Credenciales Incorrectas");
     }
 }

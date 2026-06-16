@@ -32,4 +32,9 @@ public class YogurtService implements IYogurtService {
         yogurtRepository.deleteById(idYogurt);
     }
 
+    @Override
+    public Yogurt findYogurtById(Long idYogurt) {
+        return yogurtRepository.findById(idYogurt).orElse(null);
+    }
+
 }

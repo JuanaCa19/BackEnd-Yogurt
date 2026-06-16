@@ -27,13 +27,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean passwordValidate( String nombre , String password) {
+    public String passwordValidate( String email , String password) {
         List<User> users =userRepository.findAll();
         for(User user :users){
-            if(user.getNombre().equals(nombre)){
-                return BCrypt.checkpw(password,user.getPassword());
+            if(user.getEmail().equals(email) && BCrypt.checkpw(password,user.getPassword())){
+                return user.getNombre();
             }
         }
-     return false;
+     return null;
     }
 }

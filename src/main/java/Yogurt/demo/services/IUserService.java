@@ -10,6 +10,6 @@ public interface IUserService {
 
     public List<User> findAllUsers ();
 
-    public boolean passwordValidate(String nombre , String password);
+    public String passwordValidate(String email , String password);
 
 }

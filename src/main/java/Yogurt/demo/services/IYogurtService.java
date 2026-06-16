@@ -12,4 +12,6 @@ public interface IYogurtService {
     public void saveYogurt(Yogurt yogurt);
 
     public void deleteYogurtById(Long idYogurt);
+
+    public Yogurt findYogurtById(Long idYogurt);
 }
